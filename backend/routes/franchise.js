@@ -42,7 +42,11 @@ router.post('/franchise', async (req, res) => {
       // Set franchiseId for each location
       franchise.locations.forEach(location => {
           location.franchiseId = franchise._id; // Automatically assign the parent franchise _id
-      });
+          
+          location.menu.forEach(menu => {
+            menu.franchiseId = franchise._id;
+          });
+    });
 
       // Save the Franchise
       const savedFranchise = await franchise.save();

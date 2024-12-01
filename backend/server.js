@@ -7,6 +7,7 @@ const qrRoutes = require('./routes/qr');
 const franchiseRoutes = require('./routes/franchise');
 
 dotenv.config();
+console.log('MONGO_URI:', process.env.MONGO_URI);
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -20,7 +21,7 @@ app.use('/qr', qrRoutes);
 app.use('/', franchiseRoutes);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
