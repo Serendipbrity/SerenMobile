@@ -32,7 +32,7 @@ router.get('/franchise/:id', async (req, res) => {
 });
 
 // ------- working ------
-// Create a New Franchise /franchise
+// Create a New Franchise 
 // /franchise
 router.post('/franchise', async (req, res) => {
   try {

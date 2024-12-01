@@ -1,26 +1,24 @@
+// screens/QRScanner.js
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 const QRScanner = ({ navigation }) => {
-    const handleScan = (e) => {
-        const { data } = e;
-        const params = new URLSearchParams(data.split('?')[1]);
-        const restaurantId = params.get('restaurantId');
-        const tableNumber = params.get('table');
-        navigation.navigate('Menu', { restaurantId, tableNumber });
-    };
+  const handleScan = (e) => {
+    const data = JSON.parse(e.data); // Assuming QR code returns JSON with restaurantId
+    navigation.navigate('Menu', { restaurantId: data.restaurantId });
+  };
 
-    return (
-        <View style={styles.container}>
-            <QRCodeScanner onRead={handleScan} />
-            <Text>Scan a QR code to begin</Text>
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <QRCodeScanner onRead={handleScan} />
+      <Text>Scan a QR code to get started.</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
 });
 
 export default QRScanner;

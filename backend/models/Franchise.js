@@ -6,7 +6,7 @@ const MenuItemSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     description: { type: String },
   locationId: { type: mongoose.Schema.Types.ObjectId, ref: 'Location', default: null }, // Null for franchise-wide menu
-  franchiseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Franchise', required: true } // Required field for franchise ID
+  franchiseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Franchise' } 
 });
 
 // Location Schema
